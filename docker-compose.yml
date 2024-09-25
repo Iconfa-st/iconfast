@@ -1,4 +1,12 @@
 services:
+  web:
+    image: node:22-slim
+    command: "/bin/sh /app/docker/web/entrypoint.sh"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+
   postgres:
     image: postgres:${POSTGRES_VERSION}
     restart: "unless-stopped"
@@ -10,7 +18,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - db-data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sql:/docker-entrypoint-initdb.d
 
 volumes:
   db-data:
