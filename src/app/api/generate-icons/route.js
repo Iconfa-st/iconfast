@@ -142,6 +142,34 @@ export async function POST(req) {
         // Nettoyer les fichiers temporaires après envoi
         await fs.remove(tempDir);
 
+        //Récupérer la chaine de caractère du svg
+        const svgString = svgBuffer.toString();
+        const svgName = svgFile.name;
+
+        const { Pool } = require('pg');
+        const pool = new Pool({
+            user: process.env.POSTGRES_USER,
+            host: process.env.POSTGRES_HOST,
+            database: process.env.POSTGRES_DB,
+            password: process.env.POSTGRES_PASSWORD,
+            port: 5432,
+        });
+        await pool.connect((err, client, release) => {
+            if (err) {
+                return console.error('Error acquiring client', err.stack);
+            }
+            client.query(
+                'INSERT INTO svg (name, content, userid) VALUES ($1, $2, $3) RETURNING *',
+                [svgName, svgString, 1],
+                (err) => {
+                    release();
+                    if (err) {
+                        return console.error('Error executing query', err.stack);
+                    }
+                }
+            );
+        });
+
         return response;
 
     } catch (error) {
