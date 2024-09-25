@@ -55,33 +55,44 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-            <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Générateur d'Icônes</h1>
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+                <h1 className="text-2xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">
+                    Générateur d'Icônes
+                </h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div
                         {...getRootProps()}
                         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition 
-                            ${isDragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-gray-50 hover:border-gray-400'}`}
+                        ${isDragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-gray-50 hover:border-gradient-to-r from-yellow-400 to-red-600'}`}
                     >
                         <input {...getInputProps()} />
                         {isDragActive ? (
-                            <p className="text-blue-500">Déposez le fichier SVG ici...</p>
+                            <p className="text-blue-500">
+                                Déposez le fichier SVG ici...
+                            </p>
                         ) : (
-                            <p className="text-gray-500">Glissez et déposez un fichier SVG ici, ou cliquez pour sélectionner</p>
+                            <p className="text-gray-500">
+                                Glissez et déposez un fichier SVG ici, ou cliquez pour sélectionner
+                            </p>
                         )}
                     </div>
                     {svgFile && (
-                        <p className="text-sm text-green-600">
+                        <p className="text-sm text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">
                             Fichier sélectionné : <span className="font-medium">{svgFile.name}</span>
                         </p>
                     )}
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full py-2 px-4 rounded-md text-white 
-                            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+                        className={`group w-full font-bold py-2 px-4 rounded-md  
+                        ${loading
+                            ? 'bg-gray-400 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-yellow-400 to-red-600 hover:from-yellow-500 hover:to-red-700'}`
+                        }
                     >
+                    <span className="inline-block transform transition-transform duration-300 group-hover:scale-105">
                         {loading ? 'Génération en cours...' : 'Générer les Icônes'}
+                    </span>
                     </button>
                 </form>
                 {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
