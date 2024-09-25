@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
-import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import styles from './Home.Module.css';
 
 export default function Home() {
     const [svgFile, setSvgFile] = useState(null);
@@ -56,23 +54,38 @@ export default function Home() {
     };
 
     return (
-        <div className={styles.container}>
-            <h1>Générateur d'Icônes</h1>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <div {...getRootProps()} className={styles.dropzone}>
-                    <input {...getInputProps()} />
-                    {isDragActive ? (
-                        <p>Déposez le fichier SVG ici...</p>
-                    ) : (
-                        <p>Glissez et déposez un fichier SVG ici, ou cliquez pour sélectionner</p>
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+            <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+                <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Générateur d'Icônes</h1>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div
+                        {...getRootProps()}
+                        className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition 
+                            ${isDragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-gray-50 hover:border-gray-400'}`}
+                    >
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
+                            <p className="text-blue-500">Déposez le fichier SVG ici...</p>
+                        ) : (
+                            <p className="text-gray-500">Glissez et déposez un fichier SVG ici, ou cliquez pour sélectionner</p>
+                        )}
+                    </div>
+                    {svgFile && (
+                        <p className="text-sm text-green-600">
+                            Fichier sélectionné : <span className="font-medium">{svgFile.name}</span>
+                        </p>
                     )}
-                </div>
-                {svgFile && <p>Fichier sélectionné : {svgFile.name}</p>}
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Génération en cours...' : 'Générer les Icônes'}
-                </button>
-            </form>
-            {error && <p className={styles.error}>{error}</p>}
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full py-2 px-4 rounded-md text-white 
+                            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+                    >
+                        {loading ? 'Génération en cours...' : 'Générer les Icônes'}
+                    </button>
+                </form>
+                {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+            </div>
         </div>
     );
 }
