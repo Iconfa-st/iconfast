@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
 import { saveAs } from 'file-saver';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function IconsFast() {
     const [svgFile, setSvgFile] = useState(null);
@@ -64,7 +64,7 @@ export default function IconsFast() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Navigation Bar */}
-            <NavBar/>
+            <NavBar />
 
             {/* Hero Section */}
             <header className="flex-grow bg-gradient-to-r from-yellow-400 to-red-600 text-white">
@@ -109,8 +109,7 @@ export default function IconsFast() {
                                     : 'bg-gradient-to-r from-yellow-400 to-red-600 hover:from-yellow-500 hover:to-red-700'}`
                                 }
                             >
-                                <span
-                                    className="inline-block transform transition-transform duration-300 group-hover:scale-105">
+                                <span className="inline-block transform transition-transform duration-300 group-hover:scale-105">
                                     {loading ? 'Generating Icons...' : 'Generate Icons'}
                                 </span>
                             </button>
@@ -131,7 +130,7 @@ export default function IconsFast() {
             </header>
 
             {/* Features Section */}
-            <section id="features" className="bg-gray-100 py-16">
+            <section className="bg-gray-100 py-16">
                 <div className="max-w-7xl mx-auto px-6">
                     <h2 className="text-4xl font-bold text-center mb-12">Why Choose IconsFast?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -143,7 +142,7 @@ export default function IconsFast() {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             <h3 className="text-2xl font-semibold mb-3">Fast</h3>
                             <p>Get your icons converted in just a few seconds.</p>
@@ -156,8 +155,8 @@ export default function IconsFast() {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h6v6"/>
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13l3 3 3-3"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h6v6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13l3 3 3-3" />
                             </svg>
                             <h3 className="text-2xl font-semibold mb-3">Simplicity</h3>
                             <p>Intuitive interface for hassle-free usage.</p>
@@ -170,7 +169,7 @@ export default function IconsFast() {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
                             <h3 className="text-2xl font-semibold mb-3">Secure</h3>
                             <p>Your files are processed securely and confidentially.</p>
@@ -178,46 +177,9 @@ export default function IconsFast() {
                     </div>
                 </div>
             </section>
-            <section id="pricing" className="bg-white py-16">
-                <div className="max-w-7xl mx-auto px-6">
-                    <h2 className="text-4xl font-bold text-center mb-12">Pricing</h2>
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-                        {/* Free Plan */}
-                        <div className="w-full md:w-1/3 bg-gray-100 rounded-lg shadow-lg p-8 text-center">
-                            <h3 className="text-2xl font-semibold mb-4">Free</h3>
-                            <p className="text-5xl font-bold mb-6">€0,00</p>
-                            <p className="text-gray-700 mb-6">1 conversion per month</p>
-                            <button
-                                className="w-full bg-gradient-to-r from-yellow-400 to-red-600 text-white py-3 px-6 rounded-md hover:from-yellow-500 hover:to-red-700 transition">
-                                Choose Free
-                            </button>
-                        </div>
-                        {/* Basic Plan */}
-                        <div className="w-full md:w-1/3 bg-gray-100 rounded-lg shadow-lg p-8 text-center">
-                            <h3 className="text-2xl font-semibold mb-4">Basic</h3>
-                            <p className="text-5xl font-bold mb-6">€4,49</p>
-                            <p className="text-gray-700 mb-6">for 20 conversions</p>
-                            <button
-                                className="w-full bg-gradient-to-r from-yellow-400 to-red-600 text-white py-3 px-6 rounded-md hover:from-yellow-500 hover:to-red-700 transition">
-                                Choose Basic
-                            </button>
-                        </div>
-                        {/* Unlimited Plan */}
-                        <div className="w-full md:w-1/3 bg-gray-100 rounded-lg shadow-lg p-8 text-center">
-                            <h3 className="text-2xl font-semibold mb-4">Unlimited</h3>
-                            <p className="text-5xl font-bold mb-6">€14,49</p>
-                            <p className="text-gray-700 mb-6">per month</p>
-                            <button
-                                className="w-full bg-gradient-to-r from-yellow-400 to-red-600 text-white py-3 px-6 rounded-md hover:from-yellow-500 hover:to-red-700 transition">
-                                Choose Unlimited
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Footer */}
-            <Footer/>
+            <Footer />
         </div>
     );
 }
