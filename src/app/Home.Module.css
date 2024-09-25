@@ -1,0 +1,66 @@
+/* styles/Home.module.css */
+
+.container {
+    min-height: 100vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-color: #f0f2f5;
+}
+
+h1 {
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.form {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.dropzone {
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    padding: 40px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.dropzone:hover {
+    background-color: #e6f7ff;
+}
+
+.dropzone p {
+    margin: 0;
+    color: #666666;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1890ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #40a9ff;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.error {
+    color: red;
+    margin-top: 20px;
+}
