@@ -9,26 +9,14 @@ import Footer from './components/Footer';
 import PricingSection from "./components/PricingSection";
 import { motion } from 'framer-motion';
 import FeaturesSection from "./components/FeaturesSection";
+import IconsList from "@/app/components/dashboard/IconsList";
+
 
 export default function IconsFast() {
     const [svgFile, setSvgFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [downloadLink, setDownloadLink] = useState<string | null>(null);
-
-    const onDrop = (acceptedFiles: File[]) => {
-        if (acceptedFiles.length > 0) {
-            setSvgFile(acceptedFiles[0]);
-            setError('');
-            setDownloadLink(null); // Reset download link
-        }
-    };
-
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        onDrop,
-        accept: { 'image/svg+xml': [] } as Accept,
-        multiple: false,
-    });
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -95,34 +83,9 @@ export default function IconsFast() {
                     </motion.p>
 
                     {/* Conversion Interface */}
-                    <motion.div
-                        {...(getRootProps() as any)}
-                        className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition 
-                            ${isDragActive ? 'border-cyan-400 bg-cyan-50' : 'border-gray-300 bg-gray-50 hover:border-cyan-400'}`}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        <input {...getInputProps()} />
-                        {isDragActive ? (
-                            <motion.p
-                                className="text-cyan-400 font-semibold"
-                                initial={{ scale: 1 }}
-                                animate={{ scale: 1.05 }}
-                                transition={{ repeat: Infinity, duration: 0.6, repeatType: 'mirror' }}
-                            >
-                                Drop the SVG file here...
-                            </motion.p>
-                        ) : (
-                            <motion.p
-                                className="text-gray-500"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                            >
-                                Drag and drop an SVG file here, or click to select
-                            </motion.p>
-                        )}
-                    </motion.div>
+                    <div>
+                        <IconsList svgFile={svgFile} setSvgFile={setSvgFile} setError={setError} setDownloadLink={setDownloadLink} />
+                    </div>
 
                     {svgFile && (
                         <motion.p

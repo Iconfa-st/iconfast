@@ -22,6 +22,7 @@ export async function GET(req: NextRequest) {
                     svgid: row.svgid,
                     name: row.name,
                     content: row.content,
+                    userid: row.userid,
                 }
             }));
         } finally {
