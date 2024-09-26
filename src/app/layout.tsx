@@ -61,10 +61,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
-    other: {
-      rel: "manifest",
-      url: "/site.webmanifest",
-    },
   },
   viewport: "width=device-width, initial-scale=1",
   robots: {
@@ -86,7 +82,7 @@ export const metadata: Metadata = {
     // Add other verification codes as needed
   },
   // Structured Data (JSON-LD)
-  additionalMetaTags: [
+  meta: [ // Changed from additionalMetaTags to meta
     {
       name: "application-name",
       content: "Iconfa.st",
@@ -139,10 +135,10 @@ export default function RootLayout({
               }),
             }}
         />
-        <title>Iconfa.st - Generate All Your Icons from a Single SVG</title>
+        {/* Removed redundant <title> tag */}
       </head>
       <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900`}
       >
       {children}
       </body>
