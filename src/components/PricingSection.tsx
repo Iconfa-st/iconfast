@@ -3,7 +3,7 @@
 'use client';
 import {motion} from 'framer-motion';
 import React from 'react';
-import PricingCard from "@/app/components/PricingCard";
+import PricingCard from "@/components/PricingCard";
 
 const pricingData = [
     {

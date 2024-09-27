@@ -1,8 +1,8 @@
 "use client";
 import {useEffect, useState} from "react";
-import IconsList from "@/app/components/dashboard/IconsList";
-import Navbar from "@/app/components/Navbar";
-import Exporter from "@/app/components/dashboard/Exporter";
+import IconsList from "@/components/dashboard/IconsList";
+import Navbar from "@/components/Navbar";
+import Exporter from "@/components/dashboard/Exporter";
 
 export default function Dashboard() {
     const [svgFile, setSvgFile] = useState<File | null>(null);

@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDropzone, Accept } from 'react-dropzone';
 import { saveAs } from 'file-saver';
-import NavBar from './components/Navbar';
-import Footer from './components/Footer';
-import PricingSection from "./components/PricingSection";
+import NavBar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import PricingSection from "@/components/PricingSection";
 import { motion } from 'framer-motion';
-import FeaturesSection from "./components/FeaturesSection";
-import IconsList from "@/app/components/dashboard/IconsList";
+import FeaturesSection from "@/components/FeaturesSection";
+import IconsList from "@/components/dashboard/IconsList";
 
 
 export default function IconsFast() {
