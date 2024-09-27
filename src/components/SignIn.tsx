@@ -1,4 +1,4 @@
-import { signIn } from "@/auth"
+import { signIn } from "@/utils/auth/authConfig"
 
 export default function SignIn() {
     return (

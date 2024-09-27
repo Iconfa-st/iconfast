@@ -18,7 +18,7 @@ const Navbar = () => {
                     <a href="#pricing" className="transition-colors duration-300 hover:underline">
                         Pricing
                     </a>
-                    <button className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
+                    <button onClick={() => (window.location.href = "/auth/signin")} className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
                         Login
                     </button>
                 </div>
