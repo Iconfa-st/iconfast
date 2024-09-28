@@ -46,6 +46,10 @@ export default function Signin() {
                                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Sign in
                         </button>
+                        <button onClick={() => window.location.href = "/auth/register"}
+                                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Register
+                        </button>
                         <div className={"flex w-full"}>
                             <button onClick={onClickGoogle}
                                     className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

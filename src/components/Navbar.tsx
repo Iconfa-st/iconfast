@@ -10,7 +10,7 @@ const Navbar = (props: NavbarProps) => {
         <nav className="bg-gray-800 shadow-md text-white">
             <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
                 {/* Logo */}
-                <div className="text-3xl font-bold">
+                <div onClick={() => window.location.href="/"} className="text-3xl font-bold hover:cursor-pointer">
                     Icons<span className="text-purple-600">Fast</span>
                 </div>
 
@@ -22,15 +22,20 @@ const Navbar = (props: NavbarProps) => {
                     <a href="#pricing" className="transition-colors duration-300 hover:underline">
                         Pricing
                     </a>
+                    <a href="/dashboard" className="transition-colors duration-300 hover:underline">
+                        Dashboard
+                    </a>
                     {props.authenticated ? (
-                            <button onClick={() => (window.location.href = "/auth/signout")} className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
+                            <button onClick={() => (window.location.href = "/auth/signout")}
+                                    className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
                                 Logout
                             </button>
                         )
-                            : (
-                        <button onClick={() => (window.location.href = "/auth/signin")} className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
-                            Login
-                        </button>
+                        : (
+                            <button onClick={() => (window.location.href = "/auth/signin")}
+                                    className="px-4 py-2 text-purple-600 border-2 border-purple-600 border-solid font-semibold rounded-md transition-colors duration-300">
+                                Login
+                            </button>
                         )}
                 </div>
             </div>
