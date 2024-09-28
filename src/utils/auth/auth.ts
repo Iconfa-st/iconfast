@@ -1,9 +1,18 @@
 "use server"
-import {auth, signIn} from "@/utils/auth/authConfig";
+import {auth, signIn, signOut} from "@/utils/auth/authConfig";
 
 export async function checkAuth() {
     const session = await auth()
-    return !!session;
+    return session;
+}
+
+export async function handleSignOut() {
+    try {
+        await signOut({redirectTo: "/"})
+    } catch (e) {
+        console.error(e)
+        throw e
+    }
 }
 
 export async function handleAuthWithGoogle() {
@@ -11,6 +20,7 @@ export async function handleAuthWithGoogle() {
         await signIn("google", {redirectTo: "/dashboard"})
     } catch (e) {
         console.error(e)
+        throw e
     }
 }
 
@@ -23,5 +33,6 @@ export async function handleAuthWithCredentials(credentials: { mail: string, pas
         })
     } catch (e) {
         console.error(e)
+        throw e
     }
 }

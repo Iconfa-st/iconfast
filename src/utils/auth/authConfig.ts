@@ -28,15 +28,6 @@ const config = {
             }
             return token
         },
-        async session({session, token}) {
-            return {
-                ...session,
-                user: {
-                    ...session.user,
-                    id: token.id as string,
-                }
-            }
-        }
     },
     providers: [
         Google({

@@ -1,8 +1,21 @@
 "use client"
 import Navbar from "@/components/Navbar";
-import {handleAuthWithCredentials, handleAuthWithGoogle} from "@/utils/auth/auth";
+import {useEffect} from "react";
+import {checkAuth, handleAuthWithCredentials, handleAuthWithGoogle} from "@/utils/auth/auth";
 
 export default function Signin() {
+
+    useEffect(() => {
+        redirectIfAuthenticated()
+    }, []);
+
+    const redirectIfAuthenticated = async () => {
+        checkAuth().then((res) => {
+            if (res) {
+                window.location.href = "/dashboard"
+            }
+        })
+    }
     const onClickGoogle = async () => {
         await handleAuthWithGoogle()
     }
