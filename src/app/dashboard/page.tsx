@@ -14,7 +14,9 @@ export default function Dashboard() {
     // check if user is authenticated and retrieve name
     useEffect(() => {
         checkAuth().then((res) => {
-            console.log(res)
+            if(!res) {
+                window.location.href = "/"
+            }
         })
     }, []);
 

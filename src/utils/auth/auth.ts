@@ -24,10 +24,10 @@ export async function handleAuthWithGoogle() {
     }
 }
 
-export async function handleAuthWithCredentials(credentials: { mail: string, password: string }) {
+export async function handleAuthWithCredentials(credentials: { email: string, password: string }) {
     try {
         await signIn("credentials", {
-            mail: credentials.mail,
+            email: credentials.email,
             password: credentials.password,
             redirectTo: "/dashboard"
         })

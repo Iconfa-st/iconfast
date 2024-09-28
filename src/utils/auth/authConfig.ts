@@ -38,7 +38,7 @@ const config = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                mail: {label: "Mail", type: "text", placeholder: "jsmith@mail.com"},
+                email: {label: "Mail", type: "text", placeholder: "jsmith@mail.com"},
                 password: {label: "Password", type: "password"}
             },
             async authorize(credentials, req) {
@@ -49,16 +49,15 @@ const config = {
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
                 const client = await db.connect();
+                let queryResults;
                 let resUser;
                 try {
-                    resUser = await client.query('SELECT * FROM users WHERE email = $1', [credentials.mail]);
-                    resUser = resUser.rows[0]
+                    queryResults = await client.query('SELECT * FROM users WHERE email = $1 AND password = $2', [credentials.email, credentials.password]);
+                    if (queryResults.rows.length > 0) resUser = queryResults.rows[0]
                 } finally {
                     client.release();
                 }
                 if (resUser) {
-                    console.log("login success")
-                    console.log("resUser", resUser)
                     return resUser
                 }
                 return null
