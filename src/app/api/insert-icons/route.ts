@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import {Svg} from "@/app/types";
+import {db} from "@/utils/database";
 
 export async function POST(req: any) {
     try {
@@ -20,15 +21,7 @@ export async function POST(req: any) {
         const svgString = svgBuffer.toString();
         const svgName = svgFile.name;
 
-        const { Pool } = require('pg');
-        const pool = new Pool({
-            user: process.env.POSTGRES_USER,
-            host: process.env.POSTGRES_HOST,
-            database: process.env.POSTGRES_DB,
-            password: process.env.POSTGRES_PASSWORD,
-            port: 5432,
-        });
-        const client = await pool.connect();
+        const client = await db.connect();
         try{
             const result = await client.query(
                 'INSERT INTO svg (name, content, userid) VALUES ($1, $2, $3) RETURNING *',

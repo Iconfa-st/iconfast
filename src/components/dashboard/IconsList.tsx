@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {motion} from "framer-motion";
 import {Accept, useDropzone} from "react-dropzone";
-import IconsCard from "@/app/components/dashboard/IconsCard";
+import IconsCard from "@/components/dashboard/IconsCard";
 import {Svg} from "@/app/types";
 
 interface IconsListProps {

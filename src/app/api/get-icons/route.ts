@@ -1,20 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {Svg} from "@/app/types";
+import {db} from "@/utils/database";
 
 export async function GET(req: NextRequest) {
     const url = req.nextUrl;
     const userid = url.searchParams.get('userid');
 
     try {
-        const {Pool} = require('pg');
-        const pool = new Pool({
-            user: process.env.POSTGRES_USER,
-            host: process.env.POSTGRES_HOST,
-            database: process.env.POSTGRES_DB,
-            password: process.env.POSTGRES_PASSWORD,
-            port: 5432,
-        });
-        const client = await pool.connect();
+        const client = await db.connect();
         try {
             const result = await client.query('SELECT * FROM svg WHERE userid = $1', [userid]);
             return NextResponse.json(result.rows.map((row: Svg) => {

@@ -1,15 +1,15 @@
 // pages/index.tsx
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDropzone, Accept } from 'react-dropzone';
 import { saveAs } from 'file-saver';
-import NavBar from './components/Navbar';
-import Footer from './components/Footer';
-import PricingSection from "./components/PricingSection";
+import NavBar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import PricingSection from "@/components/PricingSection";
 import { motion } from 'framer-motion';
-import FeaturesSection from "./components/FeaturesSection";
-import IconsList from "@/app/components/dashboard/IconsList";
+import FeaturesSection from "@/components/FeaturesSection";
+import IconsList from "@/components/dashboard/IconsList";
+import {checkAuth} from "@/utils/auth/auth";
 
 
 export default function IconsFast() {
@@ -17,6 +17,13 @@ export default function IconsFast() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [downloadLink, setDownloadLink] = useState<string | null>(null);
+    const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+        checkAuth().then((res) => {
+            setAuthenticated(!!res);
+        });
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -55,7 +62,7 @@ export default function IconsFast() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Navigation Bar */}
-            <NavBar/>
+            <NavBar authenticated={authenticated}/>
 
             {/* Hero Section */}
             <motion.header
