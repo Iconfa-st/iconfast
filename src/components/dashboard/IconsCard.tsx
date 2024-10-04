@@ -22,8 +22,8 @@ export default function IconsCard(props: IconsCardProps) {
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
-            <div className={"flex justify-center"}>
-                <img height={"100px"} src={`data:image/svg+xml;utf8,${encodeURIComponent(props.icon.content)}`}/>
+            <div className={"flex justify-center max-w-[72px] p-2"}>
+                <img src={`data:image/svg+xml;utf8,${encodeURIComponent(props.icon.content)}`}/>
             </div>
             <div className="px-8">
                 <p className="text-xl font-semibold text-center text-gray-800">
