@@ -12,7 +12,7 @@ interface IconsCardProps {
 export default function IconsCard(props: IconsCardProps) {
     return (
         <motion.div
-            className={`max-h-[20vh] rounded-3xl shadow-2xl flex flex-col items-center justify-center
+            className={`min-w-[200px] max-w-[200px] p-2 rounded-3xl shadow-2xl flex flex-col items-center justify-center
             ${props.selected ? 'bg-purple-600' : 'bg-gray-200'}`}
             initial={{opacity: 0, y: 20}}
             whileInView={{opacity: 1, y: 0}}
@@ -25,11 +25,9 @@ export default function IconsCard(props: IconsCardProps) {
             <div className={"flex justify-center max-w-[72px] p-2"}>
                 <img src={`data:image/svg+xml;utf8,${encodeURIComponent(props.icon.content)}`}/>
             </div>
-            <div className="px-8">
-                <p className="text-xl font-semibold text-center text-gray-800">
-                    {props.icon.name}
-                </p>
-            </div>
+            <p className="text-l font-semibold max-w-[70%] text-center truncate text-gray-800">
+                {props.icon.name}
+            </p>
         </motion.div>
     )
 }
