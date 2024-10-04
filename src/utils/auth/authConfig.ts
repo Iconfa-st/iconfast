@@ -4,6 +4,7 @@ import Google from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import PostgresAdapter from "@auth/pg-adapter"
 import {db} from "@/utils/database";
+import bcrypt from "bcryptjs";
 
 const config = {
     pages: {
@@ -52,8 +53,11 @@ const config = {
                 let queryResults;
                 let resUser;
                 try {
-                    queryResults = await client.query('SELECT * FROM users WHERE email = $1 AND password = $2', [credentials.email, credentials.password]);
-                    if (queryResults.rows.length > 0) resUser = queryResults.rows[0]
+                    queryResults = await client.query('SELECT * FROM users WHERE email = $1', [credentials.email]);
+                    if (queryResults.rows.length > 0) {
+                        resUser = queryResults.rows[0]
+                        if (!(await bcrypt.compare(credentials.password as string, resUser.password))) resUser = null
+                    }
                 } finally {
                     client.release();
                 }

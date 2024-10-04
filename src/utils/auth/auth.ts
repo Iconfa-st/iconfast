@@ -1,6 +1,7 @@
 "use server"
 import {auth, signIn, signOut} from "@/utils/auth/authConfig";
 import {db} from "@/utils/database";
+import bcrypt from "bcryptjs";
 
 export async function checkAuth() {
     const session = await auth()
@@ -44,7 +45,11 @@ export async function handleRegisterWithCredentials(credentials: { email: string
         try {
             let queryResults = await client.query('SELECT * FROM users WHERE email = $1 AND password = $2', [credentials.email, credentials.password]);
             if (queryResults.rows.length > 0) throw new Error("User already exists")
-            await client.query('INSERT INTO users(email, password) VALUES ($1, $2)', [credentials.email, credentials.password]);
+
+            const salt = await bcrypt.genSalt(12);
+            const hashedPassword = await bcrypt.hash(credentials.password, salt);
+
+            await client.query('INSERT INTO users(email, password) VALUES ($1, $2)', [credentials.email, hashedPassword]);
         } finally {
             client.release();
         }
